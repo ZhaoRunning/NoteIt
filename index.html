@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>NoteIt: A System Converting Instructional Videos to Interactable Notes Through Multimodal Video Understanding</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Open Graph -->
+        <meta property="og:url" content="https://zhaorunning.github.io/NoteIt/" />
+        <meta property="og:image" content="https://zhaorunning.github.io/NoteIt/static/img/preview.png" />
+        <meta property="og:title" content="NoteIt: A System Converting Instructional Videos to Interactable Notes Through Multimodal Video Understanding" />
+        <meta property="og:description" content="NoteIt is a system, which automatically converts instructional videos to interactable notes using a novel pipeline that faithfully extracts hierarchical structure and multimodal key information from videos." />
+
+        <!-- Twitter -->
+        <meta name="twitter:url" content="https://zhaorunning.github.io/NoteIt/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://zhaorunning.github.io/NoteIt/static/img/preview.png" />
+        <meta name="twitter:title" content="NoteIt: A System Converting Instructional Videos to Interactable Notes Through Multimodal Video Understanding" />
+        <meta name="twitter:description" content="NoteIt is a system, which automatically converts instructional videos to interactable notes using a novel pipeline that faithfully extracts hierarchical structure and multimodal key information from videos." />
+
+        <script src="./static/js/distill_template.v2.js"></script>
+        <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> -->
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+     
+
+        <script defer="" src="./static/js/hider.js"></script>
+        <script src="./static/js/image_interact.js"></script>
+        <script src="./static/js/switch_videos.js"></script>
+
+        <link rel="stylesheet" href="./static/css/style.css">
+        <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script>
+        <script defer src="./static/js/fontawesome.all.min.js"></script>
+
+
+        <!-- medium zoom https://github.com/francoischalifour/medium-zoom -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>  <!-- jquery -->
+        <script defer src="./static/js/medium-zoom.min.js"></script>
+        <script defer src="./static/js/zoom.js"></script>
+    </head>
+    <body>
+        <div class="header-wrapper">
+            <div class="header-container" id="header-container">
+                <div class="header-content">
+                    <h1 style="margin-top: 0px"><i>NoteIt</i></h1>
+                    <h2>A System Converting <i>Instructional Videos</i> to <i>Interactable Notes</i> Through Multimodal Video Understanding</h2>
+
+                        <div class="icon-container">
+                            <div class="icon-item">
+                                <img src="./static/img/icons/visual.svg" alt="Visual Representation Icon">
+                                <div><strong>Design Space</strong>: A design space for generating interactive notes that maintain
+                                    structural consistency with the instructional videos and incorporate key verbal and visual information 
+                                    across diverse instructional videos.</div>
+                            </div>
+                            <div class="icon-item">
+                                <img src="./static/img/icons/connector.svg" alt="Connector Design Icon">
+                                <div><strong>Notes Generation Pipeline</strong>: A novel notes generation pipeline that processes instructional videos to extract 
+                                    hierarchical structures and multimodal key content, and systematically maps them into structured notes.</div>
+                            </div>
+                            <div class="icon-item">
+                                <img src="./static/img/icons/data.svg" alt="Instruction Tuning Data Icon">
+                                <div><strong>Interactive User Interface</strong>: An interactive user interface that enables users to upload instructional videos and 
+                                    explore the generated notes with diverse presentation modalities, verbosity levels, and engagement modes.</div>
+                            </div>
+                            <div class="icon-item">
+                                <img src="./static/img/icons/recipe.svg" alt="Instruction Tuning Recipes Icon">
+                                <div><strong>Technical Evaluation and User Study</strong>:  A comprehensive technical evaluation and a comparison user study (N=36).</div>
+                            </div>
+                            <!-- <div class="icon-item">
+                                <img src="./static/img/icons/eval.svg" alt="Benchmarking Icon">
+                                <div><strong>Benchmarking</strong>: We examine existing MLLM benchmarks and introduce a new vision-centric benchmark, "CV-Bench".</div>
+                            </div> -->
+                        </div>
+
+                    <div class="button-container">
+                        <!-- replace arxiv -->
+                        <a href="static/noteit.pdf" class="button paper-link" target="_blank">
+                            <span class="icon is-small">
+                                <i class="ai ai-arxiv"></i>
+                            </span>
+                            arXiv
+                        </a>
+                        <!-- replace pdf -->
+                        <a href="static/noteit.pdf" class="button paper-link" target="_blank">
+                            <span class="icon is-small">
+                                <i class="fas fa-file-pdf"></i>
+                            </span>
+                            <span>Paper</span>
+                        </a>
+                        <!-- replace image -->
+                      <!--   <a href="https://github.com/cambrian-mllm/cambrian" class="button" target="_blank">
+                            <span class="icon is-small">
+                                <i class="fab fa-github"></i>
+                            </span>
+                            <span>Code</span>
+                        </a> -->
+                        <!-- <br> -->
+                        <a href="static/noteit-30.mp4" class="button" target="_blank">
+                            <span class="icon is-small">
+                                <img src="static/img/icons/YouTube_logo.png" alt="YouTube Logo" style="height: 1em;">
+                            </span>
+                            <span>Demo (30s)</span>
+                        </a>
+                        <a href="static/noteit-5.mp4" class="button" target="_blank">
+                            <span class="icon is-small">
+                                <img src="static/img/icons/YouTube_logo.png" alt="YouTube Logo" style="height: 1em;">
+                            </span>
+                            <span>Demo (5min)</span>
+                        </a>
+                        <!-- <a href="https://huggingface.co/datasets/nyu-visionx/CV-Bench" class="button" target="_blank">
+                            <span class="icon is-small">
+                                <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face logo" style="height: 1em;">
+                            </span>
+                            <span>CV-Bench</span>
+                        </a> -->
+                    </div>
+                </div>
+                <div class="header-image">
+                    <img draggable="false" src="static/img/teasure.png" alt="Teaser Image" class="teaser-image">
+                </div>
+            </div>
+        </div>
+    <d-article>
+        <div class="byline">
+            <div class="byline-container">
+                <p>
+                    <a href="https://zhaorunning.github.io/" class="author-link" target="_blank">Running Zhao<sup><span style="color: #087321;">&spadesuit;*</span></sup></a> &emsp;
+                    <a href="https://zhihanjiang.com" class="author-link" target="_blank">Zhihan Jiang<sup><span style="color: #087321;">&spadesuit;*</span></sup></a> &emsp;
+                    <a href="" class="author-link" target="_blank">Xinchen Zhang<sup><span style="color: #087321;">&spadesuit;</span></sup></a> &emsp;
+                    <a href="" class="author-link" target="_blank">Chirui Chang<sup><span style="color: #087321;">&spadesuit;</span></sup></a> &emsp;
+                    <a href="" class="author-link" target="_blank">Handi Chen<sup><span style="color: #087321;">&spadesuit;</span></sup></a> &emsp;
+                    <a href="" class="author-link" target="_blank">Weipeng Deng<sup><span style="color: #087321;">&spadesuit;</span></sup></a> &emsp;
+                    <a href="" class="author-link" target="_blank">Luyao Jin<sup><span style="color: #7d0ca3;">&heartsuit;</span></sup></a> &emsp;
+                    <a href="https://xjqi.github.io/" class="author-link" target="_blank">Xiaojuan Qi<sup><span style="color: #087321;">&spadesuit;</span></sup></a> &emsp;
+                    <br>
+                    <a href="https://www.xun-qian.com/" class="author-link" target="_blank">Xun Qian<sup><span style="color: #4285F4;">&clubs;&dagger;</span></sup></a>&emsp;
+                    <a href="https://www.eee.hku.hk/people/echngai/" class="author-link" target="_blank">Edith C.H. Ngai<sup><span style="color: #087321;">&spadesuit;&dagger;</span></sup></a>
+                    <p></p>
+                </p>
+
+                <p style="text-align: center; font-size: 1.2em; color: rgb(0, 0, 0); font-weight: bold;">
+                    <a href="https://uist.acm.org/2025/" target="_blank">ACM UIST 2025</a>
+                </p> 
+                <p>
+                    <a style="text-align: center;" href="https://www.eee.hku.hk/" class="affiliation-link" id="affiliation" target="_blank"><sup><span style="color: #087321;">&spadesuit;</span></sup><span style="color: #087321;">HKU</span></a> &emsp;
+                    <a style="text-align: center;" href="https://www.cuhk.edu.hk/" class="affiliation-link" id="affiliation" target="_blank"><sup><span style="color: #7d0ca3;">&heartsuit;</span></sup><span style="color: #7d0ca3;">CUHK</span></a> &emsp;
+                    <a style="text-align: center;" href="https://research.google/" class="affiliation-link" id="affiliation" target="_blank"><sup><span style="color: #4285F4;">&clubs;</span></sup><span style="color: #4285F4;">Google</span></a> &emsp;
+                </p>
+
+                <!-- <a style="text-align: center;" href="https://cs.nyu.edu/home/index.html" class="affiliation-link" id="affiliation" target="_blank">The University of Hong Kong</a>
+                <p style="text-align: center; font-size: 1.35em; color: red; font-weight: bold;">
+                    <a href="https://neurips.cc/virtual/2024/oral/97972" target="_blank">UIST 2025</a>
+                </p> -->
+                <p style="text-align: center; margin-bottom: 0;">
+                    <span class="author-note"><sup>*</sup>Equal Contribution</span>&emsp;
+                    <span class="author-note"><sup>&dagger;</sup>Corresponding author</span>
+                </p>
+            </div>
+        </div>
+
+        <p class="text abstract">
+
+            Users often take notes for instructional videos to access key knowledge later without revisiting long videos. Automated note generation tools enable users to obtain informative notes efficiently.
+            However, notes generated by existing research or off-the-shelf tools fail to preserve the information conveyed in the original videos comprehensively, 
+            nor can they satisfy users' expectations for diverse presentation formats and interactive features when using notes digitally.
+        
+            <d-figure id="fig-comparison" >
+                <figure style="text-align: center;">
+                    <img data-zoomable="" draggable="false" src="./static/img/noteit.png" alt="NoteIt" style="width: 80%;">
+                    <figcaption>
+                        <strong>Figure 1: </strong>Overview of NoteIt. (a) A user drags an instructional video from an online resource into NoteIt's web interface.
+                        NoteIt processes the video and generates notes, showing (b) video hierarchy in chapter-level and step-level and (c) interactable notes. (d) Users can customize the note representation according to their preferences and needs.
+                    </figcaption>
+                </figure>
+            </d-figure>
+        </p>
+
+        <p class="text abstract">
+            We present <strong>NoteIt</strong>, a novel system that faithfully converts instructional videos into interactive notes. 
+            NoteIt is designed to handle videos with flexible hierarchical content structures and diverse presentation modalities, 
+            generating notes that maintain structural consistency and comprehensively capture key information. 
+            Users can select the output format based on their preferences and usage scenarios. 
+            Powered by MLLMs, NoteIt introduces a modular pipeline that first parses the input video to extract its hierarchical structure and key content presented in visual and verbal formats. 
+            This parsed information is then transformed into a well-defined note scheme and rendered through a user-friendly, interactive interface.
+        </p>
+            
+            <!-- <p class="text abstract">
+                NoteIt is structured around five key pillars, each offering important insights into the design space of MLLMs:
+            </p>
+            <ol class="text">
+                <li><strong><a href="#visual_representations">&sect;Design Space</a></strong>: A design space for generating interactive notes that maintain structural consistency with the instructional videos and incorporate key verbal and visual information across diverse instructional videos.</li>
+                <li><strong><a href="#systemoverview">&sect;Generation Pipeline</a></strong>:A novel notes generation pipeline that processes instructional videos to extract hierarchical structures and multimodal key content, and systematically maps them into structured notes.</li>
+                <li><strong><a href="#instruction_data">&sect;Interactive Interface</a></strong>: An interactive user interface that enables users to upload instructional videos and  explore the generated notes with diverse presentation modalities, verbosity levels, and engagement modes.</li>
+                <li><strong><a href="#sec:inst_tuning">&sect;Evaluation</a></strong>: A technical evaluation and a comparison user study (N=36). The solid performance in objective metrics and the positive user feedback demonstrated the effectiveness of the pipeline and the overall usability of NoteIt.</li>
+            </ol> -->
+
+
+        <div class="icon-row">
+            <a href="#design_sapce" class="icon-link">
+                <img src="static/img/icons/visual.svg" alt="Visual Representation Logo" class="icon">
+                Design<br>Space
+            </a>
+            <a href="#systemoverview" class="icon-link">
+                <img src="static/img/icons/connector.svg" alt="Connector Logo" class="icon">
+                System<br>Overview
+            </a>
+            <a href="#interactive_interface" class="icon-link">
+                <img src="static/img/icons/data.svg" alt="Data Logo" class="icon">
+                Interactive<br>Interface
+            </a>
+            <a href="#evaluation_results" class="icon-link">
+                <img src="static/img/icons/recipe.svg" alt="Recipe Logo" class="icon">
+                Evaluation<br>Restults
+            </a>
+            <!-- <a href="#sec:benchmarking" class="icon-link">
+                <img src="static/img/icons/eval.svg" alt="Eval Logo" class="icon">
+                Evaluation<br>Protocol
+            </a> -->
+        </div>
+
+        <p class="click-hint" style="width: 85%;">
+            <img src="static/img/icons/click.gif" style="width: 1.5rem">
+            <strong>Click to jump to each section.</strong>
+        </p>
+
+
+
+        <div id="video" style="position: relative; margin-top: 40px; margin-bottom: 0px;">
+            <h2 class="text" style="margin-top:0px; margin-bottom:10px">Video (30s)</h2>
+            <div style="max-width:800px; margin:auto; aspect-ratio:16/9;">
+            <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID?playsinline=1"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="width:100%; height:100%; border:0;"
+            ></iframe>
+            </div>
+        </div>
+
+        <hr>
+
+        <div id='design_sapce' class="vision-block">
+            <h1 class="text">Design Space</h1>
+            <div class="subsection">
+                <h3 class="text">Characteristics of Instructional Videos</h3>
+                <p class="text">
+                    <strong>Hierarchical Structure.</strong>
+                    Given the analysis of instructional videos, we found that instructional videos typically have a vertical structure for sequential content presentation or a horizontal structure for parallel or alternative content presentation. 
+                    <!-- For vertical structure, videos have sequentuial content to present chapter-by-chapter or step-by-step instcutions, where chapters typically follow a logical progression from overall goals to impletementation and, finally, to summary, while
+                    steps within each chapter elaborate detailed actions in order. Beyond this, within instructional videos with horizontal structure, some chapters or steps can be performed independently, without dependency on others -->
+                </p>
+                <d-figure>
+                    <figure style="text-align: center;">
+                        <img data-zoomable="" draggable="false" src="static/img/hierarchy.png" alt="Hierarchical structure of instructional videos" style="width: 80%;">
+                        <figcaption>
+                            <strong>Figure 2:</strong> Hierarchical structure of instructional videos.
+                        </figcaption>
+                    </figure>
+                </d-figure>
+
+                <p class="text">
+                    <strong>Multimodal Key Information.</strong>
+                    Verbally, creators emphasize critical steps using voiceover narration, such as providing tips and warnings (e.g., precise temporal or quantitative details). 
+                    Visually, key information is reinforced through text overlays, visual cues (e.g., graphic & diagram annotations and special marks including circles, arrows, and lines) or camera perspective manipulation (e.g., shot transition for zoom-in or close-up).
+                </p>
+                <d-figure>
+                    <figure>
+                        <img data-zoomable="" draggable="false" src="static/img/keyinfo.png" alt="Visual key information">
+                        <figcaption>
+                            <strong>Figure 3:</strong> Visual key information.
+                        </figcaption>
+                    </figure>
+                </d-figure>
+            </div>
+            
+            <h3 class="text">Characteristics of Notes</h3>
+            <div class="subsection">
+                <p class="text">
+                    <strong>Diverse Presentation Modalities.</strong>
+                    Notes vary in presentation modality, with some using text-only formats and others incorporating multimodal elements such as images or video clips. 
+                </p>
+                <p class="text">
+                    <strong>Varying Content Verbosity.</strong>
+                    Notes vary in their level of content verbosity. Some provide detailed step descriptions, including execution parameters, contextual cues, and possible variations, 
+                    while some of the notes offer concise descriptions, reducing steps to their essential components.
+                </p>
+                <p class="text">
+                    <strong>Different Engagement mode.</strong>
+                    Notes commonly follow one of two engagement modes: printable or interactable. Printable notes present all content at once in a static, linear format.
+                    In contrast, interactable notes adopt a dynamic format, revealing information progressively through features such as collapsible sections, hover-to-reveal terms, or clickable elements.
+                </p>
+                <d-figure>
+                    <figure>
+                        <img data-zoomable="" draggable="false" src="static/img/notes.png" alt="Diverse presentation modalities">
+                        <figcaption>
+                            <strong>Figure 4:</strong> Different presentation modalities and engagement modes.
+                        </figcaption>
+                    </figure>
+                </d-figure>
+            </div>
+
+            <h3 class="text">Design Goals</h3>
+            <div class="subsection">
+                <p class="text">
+                    <strong>D1. Maintain note structure consistent with the original video.</strong> 
+                    The note generated should maintain the vertical and horizontal structures of the instructional video, accurately reflecting both sequential and parallel flows.<br>
+                </p>
+                <p class="text">
+                    <strong>D2. Include both visual and verbal key information.</strong>
+                    The notes should capture verbal key information (e.g., tips, warnings, and precise instructions from narration) and visual key information (e.g., text overlays, graphic and diagram annotations, special marks, and camera perspective manipulations).<br>
+                </p>
+                <p class="text">
+                    <strong>D3. Support interaction based on user preferences.</strong>
+                    The note-generation system should offer multiple options, including modality (text-only or text-image/GIF pairs), content verbosity (concise or detailed), and engagement mode (printable or interactive).<br>
+                </p>
+                <p class="text">
+                    <strong>D4. Scale across diverse instructional videos.</strong>
+                    The system should be scalable and adaptable without relying on handcrafted rules. It should automatically generate notes tailored to each video, enabling broad applicability and meeting the needs of diverse users.
+                </p>
+            </div>
+        </div>
+
+        <div id='systemoverview' class="vision-block">
+            <h1 class="text">System Overview</h1>
+            <div class="sub-section">
+                    <p class="text">
+                        <strong>NoteIt</strong> contains five modules: (1) video parsing that preprocesses video to extract video frames without redundancy and audio to extract speech transcripts; (2) hierarchical structure extraction to extract and represent structures in chapter and step levels; 
+                        (3) key information extraction to select key frames with various presentations of visual information; (4) note creation to complete the notes content and represent it as a designed structural scheme; (5) interactable UI for user customization.
+                    </p>
+                    <d-figure>
+                        <figure>
+                            <img data-zoomable="" draggable="false" src="static/img/overview.png" alt="system overview">
+                            <figcaption>
+                                <strong>Figure 5:</strong> System overview of NoteIt.
+                            </figcaption>
+                        </figure>
+                    </d-figure>
+            </div>
+
+            <div class="subsection">
+                <h3 class="text">Hierarchical Structure Extraction</h3>
+                <p class="text">
+                    This modulae aims to extract the hierarchical structure in a chapter level and step level, and represent them as a directed acyclic graph (DAG), respectively, to clearly show their vertical and horizontal structure.
+                    It sequentially performs vision differential caption, structure elements extraction, and structure relation representation.
+                </p>
+                <d-figure>
+                    <figure style="text-align: center;">
+                        <img data-zoomable="" draggable="false" src="static/img/hierarchy_extraction.png" alt="hierarchical structure extraction", style="width: 90%;"> 
+                        <figcaption>
+                            <strong>Figure 6:</strong>Hierarchical structure extraction pipeline.
+                        </figcaption>
+                    </figure>
+                </d-figure>
+            </div>
+
+            <div class="subsection">
+                <h3 class="text">Visual Key Information Extraction</h3>
+                <p class="text">
+                    This modulae extract frames representing visual key information from filtered images. 
+                    To achieve this, the module presents an agentic workflow to extract the static key frames (text overlays, graphic and diagram annotations, and special marks) and leverage a suit of vision and language models to extract the dynamic key frames (camera perspective manipulation), respectively.
+                </p>
+                <d-figure>
+                    <figure style="text-align: center;">
+                        <img data-zoomable="" draggable="false" src="static/img/keyframeextraction.png" alt="hierarchical structure extraction", style="width: 90%;"> 
+                        <figcaption>
+                            <strong>Figure 7:</strong>Keyframe extraction pipeline.
+                        </figcaption>
+                    </figure>
+                </d-figure>
+            </div>
+        </div>
+
+        <div id='interactive_interface' class="vision-block">
+            <h1 class="text">Interactive Interface</h1>
+            <p class="text">
+                NoteIt extracts keyframes (text overlays, graphic & diagram annotations, special marks and camera perspective manipulations), structure (chapter and step), summarization (chapter and step), and thumbnails, and they are integrated into a unique note scheme.
+                The defined note schema represents all the extracted information of the instructional video in a clear structure to benefit the following construction of interactable UI.
+            </p>
+            <d-figure id="interface">
+                <figure style="text-align: center;">
+                    <img data-zoomable="" draggable="false" src="static/img/interface.png" alt="interactive interface", style="width: 85%;">
+                    <figcaption>
+                        <strong>Figure 8:</strong> The designed note schema of each video and the corresponding interactive interface.
+                    </figcaption>
+                </figure>
+            </d-figure>
+            <p class="text">
+                The interface consists of three main components: video player, video hierarchy and notes. Users can customize the note's modality (text-only
+                or text-image), engagement level (printable or interactable), and detail level (concise or verbose).
+                In interactable mode, parallel sections are collapsed into slides, and users can navigate through them using a slider with tabs displaying section summaries. 
+                In printable mode, both the vertical and horizontal sections are displayed in sequence. Furthermore, in interactable and text-image mode, a GIF is included to demonstrate each step. 
+                In verbose mode, the step notes are more detailed, and any text or graphical hints are directly displayed.
+            </p>
+        </div>
+
+        <div id="evaluation_results" class="data-block">
+            <h1 class="text">Evaluation Results</h1>
+            <p class="text">
+                We conducted a technical evaluation by measuring the performance of hierarchical structure extraction and the performance of visual key information extraction.
+                Morevoer, We conducted a user study to assess the feasibility of our pipeline and the overall usability of the user interface. 
+            </p>
+
+            <div class="subsection">
+                <h3 class="text">Technical Evaluation</h3>
+                <p class="text" id="technical_eval">
+                    For static scenarios including text overlays, graphic and diagram annotations, and special marks, NoteIt successfully captures nearly all key infomation with minimal false positives, as evidenced by consistently high precision, recall, and F1 scores all above 91%.
+                    Although dynamic scenarios is challenging, NoteIt achieves a high precision of 90.96%, indicating that most of the dynamic visual key information it identifies is indeed relevant and important. 
+                    The recall of 67.94% suggests that NoteIt effectively identifies prominent and noticeable dynamic cues, while more subtle or less salient instances may be missed due to the implicitness and variability in dynamic visual content.
+                </p>
+                <d-figure>
+                    <figure style="text-align: center;">
+                        <img data-zoomable="" draggable="false" src="static/img/technicaleval.png" alt="technical evaluation", style="width: 50%;">
+                        <figcaption>
+                            <strong>Table 1:</strong> Visual key information extraction performance.
+                        </figcaption>
+                    </figure>
+                </d-figure>
+                <p class="text">
+                    To assess chapter-level segmentation, we calculate the average Mean Relative Accuracy (MRA) score, which ranges from 0 to 1 and measures how well the extracted chapter-level structure aligns with the ground truth.
+                    NoteIt achieves an average MRA score of 75.31%, with 11 videos (out of 32 videos) exhibiting a perfect MRA score of 1.0, indicating that all chapters in those videos are correctly identified. 
+                    These results underscore NoteIt's strong alignment with human interpretations, demonstrating the model's advanced capability in parsing complex video narratives.
+                </p>
+            </div>
+            <div class="subsection">
+                <h3 class="text">User Study</h3>
+                <p class="text" id="user_study">
+                    Participants rated NoteIt significantly higher than the baseline across all design goals and evaluation metrics. Specifically, NoteIt provides consistent hierarchical structure aligned with the video, 
+                    captures key verbal and visual information in the video, and provides necessary and useful customization. Moreover, NoteIt supports diverse video categories and content.
+                    NoteIt are also recognized by participants to have high satisfaction and usability.
+                </p>
+                <d-figure>
+                    <figure style="text-align: center;">
+                        <img data-zoomable="" draggable="false" src="static/img/userstudy.png" alt="Targeted Internet Data Collection Engine" style="width: 80%;">
+                        <figcaption>
+                            <strong>Table 2:</strong> The result of statistic analysis. We report the mean 𝑀 and standard error 𝑆𝐸 for the baseline tool (NoteGPT) and our NoteIt, and
+                            the test statistic 𝑊 and 𝑝 value of the Wilcoxon signed-rank test. All tests were two-sided, where p-value < 0.05 indicates the
+                            statistical significance..
+                        </figcaption>
+                    </figure>
+                </d-figure>
+            </div>
+        </div>
+
+        <!-- <div id="conclusion" style="position: relative; margin-top: 40px; margin-bottom: 0px;">
+            <h2 class="text" style="margin-top:0px; margin-bottom:10px">Conclusion</h2>
+            <p class="text">
+                To conclude, Cambrian-1 is a family of state-of-the-art MLLMs that achieve top performance across diverse benchmarks
+                and excel in visual-centric tasks. We provide model weights, open-source code, datasets, and detailed recipes for model training and evaluation.
+                We hope our work will strengthen the open research community and accelerate research in both visual representation learning and multimodal systems.
+            </p>
+        </div> -->
+
+        <div id="Demo" style="position: relative; margin-top: 40px; margin-bottom: 0px;">
+            <h2 class="text" style="margin-top:0px; margin-bottom:10px">Demo (5min)</h2>
+            <div style="max-width:800px; margin:auto; aspect-ratio:16/9;">
+            <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID?playsinline=1"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="width:100%; height:100%; border:0;"
+            ></iframe>
+            </div>
+        </div>
+
+        <div id="acknowledgement" style="position: relative; margin-top: 40px; margin-bottom: 0px;">
+            <h2 class="text" style="margin-top:0px; margin-bottom:10px">Acknowledgement</h2>
+            <p class="text">
+                We sincerely thank <a href="https://www.sainingxie.com/">NYU VisionX</a> for the nice project page template.
+            </p>
+        </div>
+
+        </d-article>
+        <d-appendix>
+            <h3>BibTeX</h3>
+            <p class="bibtex">
+                @article{zhao2025noteit,<br>
+                &nbsp;&nbsp;title={{NoteIt: A System Converting Instructional Videos to Interactable Notes Through Multimodal Video Understanding}},<br>
+                &nbsp;&nbsp;author={Running Zhao, Zhihan Jiang, Xinchen Zhang, Chirui Chang, Handi Chen, Weipeng Deng, Luyao Jin, Xiaojuan Qi, Xun Qian, Edith C.H. Ngai},<br>
+                &nbsp;&nbsp;journal={The 2025 ACM Symposium on User Interface Software and Technology},<br>
+                &nbsp;&nbsp;doi={10.1145/3746059.3747626},<br>
+                &nbsp;&nbsp;year={2025}<br>
+                }
+            </p>
+
+            <d-footnote-list></d-footnote-list>
+            <d-citation-list></d-citation-list>
+        </d-appendix>
+        <!-- bibliography will be inlined during Distill pipeline's pre-rendering -->
+        <d-bibliography src="bibliography.bib"></d-bibliography>
+        <script src="./static/js/nav-bar.js"></script>
+    </body>
+</html>
