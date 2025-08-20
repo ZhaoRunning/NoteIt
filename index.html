@@ -104,13 +104,13 @@
                             <span>Code</span>
                         </a> -->
                         <!-- <br> -->
-                        <a href="static/noteit-30.mp4" class="button" target="_blank">
+                        <a href="https://www.youtube.com/watch?v=DG9L9OqXH8g" class="button" target="_blank">
                             <span class="icon is-small">
                                 <img src="static/img/icons/YouTube_logo.png" alt="YouTube Logo" style="height: 1em;">
                             </span>
                             <span>Demo (30s)</span>
                         </a>
-                        <a href="static/noteit-5.mp4" class="button" target="_blank">
+                        <a href="https://www.youtube.com/watch?v=vORspE4lXMc" class="button" target="_blank">
                             <span class="icon is-small">
                                 <img src="static/img/icons/YouTube_logo.png" alt="YouTube Logo" style="height: 1em;">
                             </span>
@@ -235,10 +235,10 @@
 
 
         <div id="video" style="position: relative; margin-top: 40px; margin-bottom: 0px;">
-            <h2 class="text" style="margin-top:0px; margin-bottom:10px">Video (30s)</h2>
+            <h2 class="text" style="margin-top:0px; margin-bottom:10px">Video Preview</h2>
             <div style="max-width:800px; margin:auto; aspect-ratio:16/9;">
             <iframe
-                src="https://www.youtube.com/embed/VIDEO_ID?playsinline=1"
+                src="https://www.youtube.com/embed/DG9L9OqXH8g"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
@@ -336,7 +336,7 @@
             <div class="sub-section">
                     <p class="text">
                         <strong>NoteIt</strong> contains five modules: (1) video parsing that preprocesses video to extract video frames without redundancy and audio to extract speech transcripts; (2) hierarchical structure extraction to extract and represent structures in chapter and step levels; 
-                        (3) key information extraction to select key frames with various presentations of visual information; (4) note creation to complete the notes content and represent it as a designed structural scheme; (5) interactable UI for user customization.
+                        (3) key information extraction to select key frames with various presentations of visual information; (4) note creation to complete the notes content and represent it as the designed note schema; (5) interactable UI for user customization.
                     </p>
                     <d-figure>
                         <figure>
@@ -368,7 +368,7 @@
                 <h3 class="text">Visual Key Information Extraction</h3>
                 <p class="text">
                     This modulae extract frames representing visual key information from filtered images. 
-                    To achieve this, the module presents an agentic workflow to extract the static key frames (text overlays, graphic and diagram annotations, and special marks) and leverage a suit of vision and language models to extract the dynamic key frames (camera perspective manipulation), respectively.
+                    It presents an agentic workflow to extract the static key frames (text overlays, graphic and diagram annotations, and special marks) and leverage a suit of vision and language models to extract the dynamic key frames (camera perspective manipulation), respectively.
                 </p>
                 <d-figure>
                     <figure style="text-align: center;">
@@ -406,17 +406,17 @@
 
         <div id="evaluation_results" class="data-block">
             <h1 class="text">Evaluation Results</h1>
-            <p class="text">
+            <!-- <p class="text">
                 We conducted a technical evaluation by measuring the performance of hierarchical structure extraction and the performance of visual key information extraction.
                 Morevoer, We conducted a user study to assess the feasibility of our pipeline and the overall usability of the user interface. 
-            </p>
+            </p> -->
 
             <div class="subsection">
                 <h3 class="text">Technical Evaluation</h3>
                 <p class="text" id="technical_eval">
-                    For static scenarios including text overlays, graphic and diagram annotations, and special marks, NoteIt successfully captures nearly all key infomation with minimal false positives, as evidenced by consistently high precision, recall, and F1 scores all above 91%.
-                    Although dynamic scenarios is challenging, NoteIt achieves a high precision of 90.96%, indicating that most of the dynamic visual key information it identifies is indeed relevant and important. 
-                    The recall of 67.94% suggests that NoteIt effectively identifies prominent and noticeable dynamic cues, while more subtle or less salient instances may be missed due to the implicitness and variability in dynamic visual content.
+                    For static scenarios including text overlays, graphic and diagram annotations, and special marks, NoteIt successfully captures nearly all key infomation with minimal false positives, as evidenced by consistently high precision, recall, and F1 scores.
+                    Although dynamic scenarios is challenging, NoteIt achieves a high precision, indicating that most of the dynamic visual key information it identifies is indeed relevant and important. 
+                    Althought the recall shows that certain subtle or less salient instances may be missed due to the implicitness and variability in dynamic scenarios, this does not undermine the overall effectiveness of our pipeline, as it is primarily designed to support users in learning from instructional videos rather than capturing every minor detail.
                 </p>
                 <d-figure>
                     <figure style="text-align: center;">
@@ -429,7 +429,6 @@
                 <p class="text">
                     To assess chapter-level segmentation, we calculate the average Mean Relative Accuracy (MRA) score, which ranges from 0 to 1 and measures how well the extracted chapter-level structure aligns with the ground truth.
                     NoteIt achieves an average MRA score of 75.31%, with 11 videos (out of 32 videos) exhibiting a perfect MRA score of 1.0, indicating that all chapters in those videos are correctly identified. 
-                    These results underscore NoteIt's strong alignment with human interpretations, demonstrating the model's advanced capability in parsing complex video narratives.
                 </p>
             </div>
             <div class="subsection">
@@ -462,10 +461,10 @@
         </div> -->
 
         <div id="Demo" style="position: relative; margin-top: 40px; margin-bottom: 0px;">
-            <h2 class="text" style="margin-top:0px; margin-bottom:10px">Demo (5min)</h2>
+            <h2 class="text" style="margin-top:0px; margin-bottom:10px">Demo Video</h2>
             <div style="max-width:800px; margin:auto; aspect-ratio:16/9;">
             <iframe
-                src="https://www.youtube.com/embed/VIDEO_ID?playsinline=1"
+                src="https://www.youtube.com/embed/vORspE4lXMc"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
